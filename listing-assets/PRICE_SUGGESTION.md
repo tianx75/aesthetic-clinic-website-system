@@ -1,49 +1,36 @@
-# Price Suggestion
+# Pricing Strategy
 
-## Recommended Price: $249
+## Recommended Pricing
 
-### Pricing Rationale
+| Tier | Price | When to use |
+|------|-------|-------------|
+| **Launch** | $197 | First 30 days — collect reviews and social proof |
+| **Standard** | $249 | Primary price point after launch phase |
+| **Extended License** | $349 | Multi-client use for agencies and freelancers |
 
-**Market comparison:**
+## Rationale
 
-| Product Type | Typical Price Range |
-|-------------|-------------------|
+**Market context:**
+
+| Comparable products | Price range |
+|--------------------|-------------|
 | Generic HTML template (3–5 pages) | $19–$49 |
-| Premium HTML template (8–12 pages) | $49–$99 |
-| Webflow cloneable (5–10 pages) | $79–$149 |
-| Industry-specific template system | $149–$299 |
-| **This product (16 pages + docs + CMS schemas)** | **$197–$297** |
+| Premium HTML template (8–12 pages) | $59–$99 |
+| Industry-specific Webflow template | $79–$149 |
+| Multi-page system with documentation | $149–$299 |
 
-**Value justification:**
+**This product's position:** upper tier of industry-specific templates, justified by 16 pages, editorial-grade design, protocol system (unique), filterable catalog, 7 CMS schemas, and 22 documentation files.
 
-- 16 purpose-built pages (not generic filler pages)
-- Industry-specific design decisions (not just "modern template")
-- Filterable treatment catalog with search
-- Protocol system (unique — no other template has this)
-- 7 CMS collection schemas with example data
-- 22 documentation files (setup guide, onboarding, CMS structure)
-- 13 placeholder images included
-- Saves 80+ hours of design and development work
+**80+ hours of design and development work included.**
 
-### Pricing Tiers
+## Launch Plan
 
-| Tier | Price | Strategy |
-|------|-------|----------|
-| Launch price | $197 | First 50 sales — build reviews |
-| Standard price | $249 | Main price point after launch |
-| Premium / agency | $297 | With extended license option |
+| Week | Action | Price |
+|------|--------|-------|
+| 1–4 | Launch at introductory rate, collect first 10–20 reviews | $197 |
+| 5+ | Raise to standard price | $249 |
+| Ongoing | Offer extended license as separate tier | $349 |
 
-### Launch Strategy
+## Floor Price
 
-1. **Week 1–2:** Set price at $197 with "launch discount" messaging
-2. **After 20–50 sales:** Raise to $249
-3. **Optional:** Offer $297 extended/agency license for multi-client use
-4. **Never go below $149** — protects perceived value
-
-### Revenue Projections
-
-| Monthly Sales | At $197 | At $249 |
-|--------------|---------|---------|
-| 5 sales | $985 | $1,245 |
-| 10 sales | $1,970 | $2,490 |
-| 20 sales | $3,940 | $4,980 |
+Never price below **$149**. Below that, it signals low quality and attracts bargain buyers who leave negative reviews.

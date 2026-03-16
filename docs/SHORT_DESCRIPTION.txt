@@ -1,1 +1,0 @@
-A complete 16-page website system built for medical aesthetics clinics. Pure HTML/CSS/JS with a refined cream-and-gold design, filterable treatment catalog, scroll animations, and full documentation. No frameworks, no dependencies — just clean, production-ready code you can customize and deploy anywhere.

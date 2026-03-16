@@ -4,71 +4,78 @@
 Aesthetic Clinic Website System
 
 ## Tagline
-Premium 16-page website template for medical aesthetics clinics.
+The complete website system for premium aesthetic clinics.
 
 ## Price
 $249
 
-## Description
+---
 
-### A complete website system for medical aesthetics clinics.
+## Description (paste into Lemon Squeezy product description)
 
-16 purpose-built pages. Conversion-optimized architecture. Pure HTML/CSS/JS with zero dependencies.
+### 16 pages. One system. Built for the aesthetics industry.
 
-**Live Demo →** https://tianx75.github.io/aesthetic-clinic-website-system/
+Not a generic template — a complete website architecture for medical aesthetics clinics, medical spas, and cosmetic treatment practices.
+
+**[View the Live Demo →](https://tianx75.github.io/aesthetic-clinic-website-system/)**
 
 ---
 
-**What makes it different from generic templates:**
+**Why this exists:**
 
-| Generic Template | This Product |
-|-----------------|-------------|
-| 3–5 generic pages | 16 purpose-built pages |
-| Basic contact form | Consultation funnel with timeline |
-| No content strategy | Built-in patient journey logic |
-| Generic layout | Protocol system + technology showcases |
-| No CMS guidance | 7 CMS collections with schemas |
+| Generic templates | This product |
+|-------------------|-------------|
+| 3–5 filler pages | 16 purpose-built pages |
+| Contact form | Consultation funnel with visual timeline |
+| No industry logic | Patient journey from discovery to booking |
+| One layout repeated | Protocol system, technology showcases, academy |
+| No CMS planning | 7 collection schemas with example data |
+| "Replace text here" | 22-file documentation package |
 
 ---
 
 **Pages included:**
 
-Homepage · Treatment Catalog (filterable) · Consultation Booking · Protocol Hub · Protocol Detail · Protocol Treatments · Protocol Example · Clinical Programs · Technology Hub (×2 layouts) · NOVA Pro Detail · Skin Diagnostics · RF Treatment · LED Mask · Academy (×2 layouts)
+Homepage · Treatment Catalog (filterable, searchable) · Consultation Booking · Protocol Hub · Protocol Detail · Protocol Treatments · Protocol Deep-Dive · Clinical Programs · Technology Hub (×2) · NOVA Pro · Skin Diagnostics · RF Treatment · LED Mask · Academy (×2)
 
-**Design system:**
+**Design:**
 
-Cormorant Garamond + Montserrat · Cream/ivory/charcoal/gold palette · CSS custom properties · Responsive (desktop/tablet/mobile) · Scroll animations
+Cormorant Garamond + Montserrat · Cream / charcoal / gold palette · CSS custom properties · Responsive · Scroll animations · Editorial aesthetic
 
-**Technical stack:**
+**Stack:**
 
-Pure HTML/CSS/JS · No frameworks · No build tools · No dependencies · Deploy anywhere · 7 CMS schemas for Webflow
+Pure HTML/CSS/JS · No frameworks · No build tools · No dependencies · Deploy anywhere
 
-**Included assets:**
+**Included:**
 
-13 royalty-free placeholder images (AVIF) · SVG favicon · OG preview image · 8 preview screenshots · 22 documentation files · Complete setup guide · LICENSE
+13 AVIF placeholder images · SVG favicon + OG image · 8 screenshots · 22 documentation files · Setup guide · CMS schemas · Demo content reference · License
 
-**Who this is for:**
+**For:**
 
-Clinic owners · Medical spa operators · Web designers · Marketing agencies
+Clinic owners · Medspa operators · Web designers · Agencies
 
 ---
 
 ## Lemon Squeezy Settings
 
-- **Product type:** Digital download
-- **File:** `aesthetic-clinic-website-template.zip`
-- **Price:** $249
-- **Tax category:** Digital goods — software
-- **License:** Single use
-- **Refund:** 14 days
+| Setting | Value |
+|---------|-------|
+| Product type | Digital download |
+| File | `aesthetic-clinic-website-template.zip` |
+| Price | $249 |
+| Tax category | Digital goods — software |
+| License | Single commercial use |
+| Refund | 14 days |
 
 ## Media Order
 
-1. homepage-hero.png
-2. homepage-sections.png
-3. treatments-page.png
-4. technology-hub.png
-5. protocol-page.png
-6. consultation-page.png
-7. academy-page.png
-8. mobile-preview.png
+| # | File |
+|---|------|
+| 1 | `homepage-hero.png` |
+| 2 | `homepage-sections.png` |
+| 3 | `treatments-page.png` |
+| 4 | `technology-hub.png` |
+| 5 | `protocol-page.png` |
+| 6 | `consultation-page.png` |
+| 7 | `academy-page.png` |
+| 8 | `mobile-preview.png` |
