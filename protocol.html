@@ -66,6 +66,13 @@
     .nav__link:hover,.nav__link.active{color:var(--charcoal)}
     .nav__cta{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.7rem 1.6rem;border:1px solid var(--charcoal);transition:all .2s}
     .nav__cta:hover{background:var(--charcoal);color:var(--ivory)}
+    .nav:not(.on){background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 100%)}
+    .nav:not(.on) .nav__logo{color:#fff}
+    .nav:not(.on) .nav__logo span{color:var(--gold-l,#D4B077)}
+    .nav:not(.on) .nav__link{color:rgba(255,255,255,.75)}
+    .nav:not(.on) .nav__link:hover,.nav:not(.on) .nav__link.active{color:#fff}
+    .nav:not(.on) .nav__cta{border-color:rgba(255,255,255,.6);color:#fff}
+    .nav:not(.on) .nav__cta:hover{background:#fff;color:var(--charcoal);border-color:#fff}
 
     /* ── BUTTONS ─────────────────────────────────────────── */
     .btn-dark{display:inline-flex;align-items:center;gap:.7rem;padding:.95rem 2.1rem;background:var(--charcoal);color:var(--ivory);font-size:.66rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;transition:background .3s}
