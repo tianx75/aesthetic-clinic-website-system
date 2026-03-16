@@ -1,0 +1,1 @@
+Aesthetic Clinic Website System — a premium 16-page HTML/CSS/JS website template built for medical aesthetics clinics. Includes filterable treatment catalog, protocol system, technology showcases, consultation booking flow, scroll animations, and 22 documentation files. Zero dependencies. Deploy anywhere.
