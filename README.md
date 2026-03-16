@@ -8,7 +8,7 @@ A premium 16-page website template for medical aesthetics clinics. Pure HTML, CS
 
 ## Live Demo
 
-> **GitHub Pages:** Once deployed, visit `https://yourusername.github.io/aesthetic-clinic-website-system/`
+> **[View Live Demo →](https://tianx75.github.io/aesthetic-clinic-website-system/)**
 
 ---
 
