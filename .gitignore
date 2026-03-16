@@ -1,0 +1,33 @@
+# macOS system files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE / editor config
+.claude/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Development artifacts
+TO_REMOVE_BEFORE_SALE/
+node_modules/
+*.log
+
+# Package files (buyers download from marketplace)
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+server.rb
+server.py
+server.sh

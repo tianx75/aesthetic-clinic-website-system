@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FAF6F1"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#C9A96E"/>
+  <text x="600" y="260" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="400" fill="#2C2C2C" text-anchor="middle" letter-spacing="2">Aesthetic Clinic</text>
+  <text x="600" y="320" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#6B6B6B" text-anchor="middle" letter-spacing="6" text-transform="uppercase">WEBSITE SYSTEM</text>
+  <line x1="520" y1="350" x2="680" y2="350" stroke="#C9A96E" stroke-width="1"/>
+  <text x="600" y="400" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#9B9B9B" text-anchor="middle" letter-spacing="3">16 PAGES · 7 CMS COLLECTIONS · CONVERSION ARCHITECTURE</text>
+</svg>

@@ -1,0 +1,64 @@
+AESTHETIC CLINIC WEBSITE SYSTEM — LICENSE AGREEMENT
+
+Copyright (c) 2026 All rights reserved.
+
+This is a commercial digital product. By purchasing and using this product,
+you agree to the following terms:
+
+1. GRANT OF LICENSE
+
+   You are granted a single, non-exclusive license to use this product
+   for ONE (1) website project — either for yourself or for a single
+   end client.
+
+2. PERMITTED USE
+
+   You may:
+   - Use the product for one commercial website project
+   - Modify the HTML, CSS, and JavaScript code to fit your needs
+   - Replace all content, images, and branding with your own
+   - Deploy the modified website on any hosting platform
+   - Use the product in a client project (counts as your one use)
+
+3. PROHIBITED USE
+
+   You may NOT:
+   - Resell, redistribute, or sublicense this product in any form
+   - Share the original or modified files with others for reuse
+   - Include this product in another template, theme, or product for sale
+   - Use the product for more than one website without purchasing
+     an additional license
+   - Claim authorship of the original design system
+
+4. EXTENDED / MULTI-USE LICENSE
+
+   If you wish to use this product for multiple websites or client
+   projects, contact the seller to purchase an extended license.
+
+5. SUPPORT
+
+   This product is provided "as is" with documentation included.
+   Reasonable support for setup questions may be available from the
+   seller, but is not guaranteed unless explicitly offered.
+
+6. REFUNDS
+
+   Refund policy is determined by the marketplace where the product
+   was purchased (Gumroad, Lemon Squeezy, Webflow Marketplace, etc.).
+
+7. LIABILITY
+
+   The product is provided without warranty of any kind, express or
+   implied. The seller shall not be liable for any damages arising
+   from the use of this product.
+
+8. INTELLECTUAL PROPERTY
+
+   The design system, page architecture, conversion logic, and
+   documentation methodology remain the intellectual property of the
+   original creator. Modification for end-use is permitted; claiming
+   original authorship is not.
+
+---
+
+For licensing questions: [your-email@domain.com]

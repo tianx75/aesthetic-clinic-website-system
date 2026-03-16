@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treatments — Aesthetic Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory:#FDFAF6;--cream:#F5F0E8;--charcoal:#1A1816;
+      --c60:rgba(26,24,22,.6);--c30:rgba(26,24,22,.3);--c10:rgba(26,24,22,.08);--c05:rgba(26,24,22,.04);
+      --gold:#B8965A;--gold-l:#D4B077;--gold-p:rgba(184,150,90,.12);
+      --w20:rgba(255,255,255,.2);--w10:rgba(255,255,255,.1);--w45:rgba(255,255,255,.45);--w70:rgba(255,255,255,.7);
+      --font-d:'Cormorant Garamond',serif;--font-s:'Montserrat',sans-serif;
+      --ease:cubic-bezier(.25,.46,.45,.94);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{background:var(--ivory);color:var(--charcoal);font-family:var(--font-s);font-weight:300;font-size:15px;line-height:1.7;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    button{border:none;background:none;cursor:pointer;font-family:inherit}
+    ul{list-style:none}
+    .wrap{max-width:1260px;margin:0 auto;padding:0 2rem}
+    .label{font-family:var(--font-s);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+    /* NAV */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s var(--ease)}
+    .nav.on{background:rgba(253,250,246,.95);backdrop-filter:blur(12px);padding:1rem 2rem;box-shadow:0 1px 0 var(--c10)}
+    .nav__logo{font-family:var(--font-d);font-size:1.2rem;font-weight:500;letter-spacing:.04em}
+    .nav__logo span{color:var(--gold)}
+    .nav__links{display:flex;gap:2.5rem;align-items:center}
+    .nav__link{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--c60);transition:color .2s}
+    .nav__link:hover,.nav__link.active{color:var(--charcoal)}
+    .nav__cta{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.7rem 1.6rem;border:1px solid var(--charcoal);transition:all .2s}
+    .nav__cta:hover{background:var(--charcoal);color:var(--ivory)}
+
+    /* COMPACT HERO */
+    .hero{padding:7.5rem 0 2.5rem;background:var(--charcoal);background-image:url('assets/images/hero/hero-treatment-room.avif');background-size:cover;background-position:center;color:#fff;position:relative}
+    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,24,22,0.82) 0%,rgba(26,24,22,0.92) 100%);pointer-events:none}
+    .hero>*{position:relative;z-index:1}
+    .hero__inner{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem}
+    .hero__title{font-family:var(--font-d);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.1;color:#fff}
+    .hero__sub{font-size:.8rem;color:var(--w45);max-width:38ch;line-height:1.7}
+    .hero__count{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--w45);white-space:nowrap}
+    .hero__count strong{color:var(--gold-l);font-weight:500;font-size:1.5rem;display:block;line-height:1;margin-bottom:.15rem}
+
+    /* STICKY FILTER BAR */
+    .filter-bar{background:var(--charcoal);border-top:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:90;transition:top .3s}
+    .filter-bar.nav-down{top:62px}
+    .filter-bar__inner{display:flex;align-items:center;gap:0}
+    .filter-bar__row{display:flex;gap:0;align-items:center;overflow-x:auto;flex:1;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .filter-bar__row::-webkit-scrollbar{display:none}
+    .fbtn{font-size:.6rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.85rem 1.3rem;color:rgba(255,255,255,.3);white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
+    .fbtn:hover{color:rgba(255,255,255,.65)}
+    .fbtn.active{color:var(--gold-l);border-bottom-color:var(--gold)}
+    .filter-bar__search{position:relative;margin-left:auto;flex-shrink:0}
+    .filter-bar__input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#fff;font-family:var(--font-s);font-size:.72rem;font-weight:300;padding:.6rem 1rem .6rem 2rem;width:180px;outline:none;transition:all .2s}
+    .filter-bar__input::placeholder{color:rgba(255,255,255,.25)}
+    .filter-bar__input:focus{border-color:var(--gold);width:220px}
+    .filter-bar__icon{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);font-size:.7rem;color:rgba(255,255,255,.25);pointer-events:none}
+
+    /* RESULTS COUNT */
+    .results-bar{padding:.6rem 0;background:var(--ivory);border-bottom:1px solid var(--c10)}
+    .results-bar__inner{display:flex;justify-content:space-between;align-items:center}
+    .results-count{font-size:.68rem;color:var(--c30);letter-spacing:.04em}
+    .results-count strong{color:var(--charcoal);font-weight:500}
+
+    /* CARD GRID */
+    .catalog{padding:1.5rem 0 3rem}
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--c10)}
+    .card-grid:empty{background:transparent}
+
+    /* EMPTY STATE */
+    .empty-state{display:none;text-align:center;padding:5rem 2rem;color:var(--c30)}
+    .empty-state.show{display:block}
+    .empty-state__icon{font-size:2.5rem;margin-bottom:.75rem;opacity:.3}
+    .empty-state__text{font-size:.85rem;margin-bottom:.25rem}
+    .empty-state__hint{font-size:.72rem;color:var(--c30)}
+
+    /* TREATMENT CARD — compact */
+    .card{background:var(--ivory);padding:1.75rem 1.5rem;position:relative;transition:background .2s;display:flex;flex-direction:column}
+    .card:hover{background:#fff}
+    .card[data-hidden]{display:none}
+    .card__top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.6rem}
+    .card__cat{font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.18rem .5rem;background:var(--gold-p);color:var(--gold);white-space:nowrap}
+    .card__pillar{font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--c30);white-space:nowrap}
+    .card__title{font-family:var(--font-d);font-size:1.3rem;font-weight:400;line-height:1.2;margin-bottom:.2rem}
+    .card__sub{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:.5rem}
+    .card__desc{font-size:.78rem;color:var(--c60);line-height:1.65;margin-bottom:.75rem;flex:1}
+    .card__tags{display:flex;flex-wrap:wrap;gap:.25rem;margin-bottom:.85rem}
+    .card__tag{font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .45rem;background:var(--c05);color:var(--c60)}
+    .card__footer{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:.75rem;border-top:1px solid var(--c10)}
+    .card__link{font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);display:inline-flex;align-items:center;gap:.35rem;transition:gap .2s}
+    .card__link:hover{gap:.6rem}
+    .card__protocol{display:flex;gap:.3rem}
+    .card__step{font-size:.5rem;letter-spacing:.06em;text-transform:uppercase;padding:.14rem .4rem;border:1px solid var(--c10);color:var(--c30)}
+    .card__step.active{border-color:var(--gold-p);color:var(--gold);background:var(--gold-p)}
+
+    /* HIGHLIGHT CARD — technology & program promo in grid */
+    .card--hl{background:var(--charcoal);color:#fff;padding:2rem 1.5rem;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all .3s var(--ease)}
+    .card--hl:hover{background:#232019}
+    .card--hl::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);opacity:.6}
+    .card--hl__label{font-size:.54rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l);margin-bottom:.75rem}
+    .card--hl__icon{font-size:1.6rem;margin-bottom:.6rem;line-height:1;opacity:.7}
+    .card--hl__title{font-family:var(--font-d);font-size:1.2rem;font-weight:400;line-height:1.2;margin-bottom:.35rem;color:#fff}
+    .card--hl__sub{font-size:.72rem;color:var(--gold-l);font-weight:500;letter-spacing:.04em;margin-bottom:.65rem}
+    .card--hl__desc{font-size:.75rem;color:var(--w45);line-height:1.65;margin-bottom:.5rem;flex:1}
+    .card--hl__specs{display:flex;flex-wrap:wrap;gap:.25rem;margin-bottom:1rem}
+    .card--hl__spec{font-size:.52rem;letter-spacing:.06em;text-transform:uppercase;padding:.14rem .45rem;background:var(--w10);color:var(--w70);border:1px solid rgba(255,255,255,.06)}
+    .card--hl__cta{display:inline-flex;align-items:center;gap:.4rem;font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);margin-top:auto;padding-top:.75rem;border-top:1px solid var(--w10);transition:gap .2s}
+    .card--hl__cta:hover{gap:.7rem}
+    /* Light variant */
+    .card--hl.card--hl-light{background:var(--cream);color:var(--charcoal)}
+    .card--hl.card--hl-light::before{background:var(--gold);opacity:.4}
+    .card--hl.card--hl-light .card--hl__title{color:var(--charcoal)}
+    .card--hl.card--hl-light .card--hl__sub{color:var(--gold)}
+    .card--hl.card--hl-light .card--hl__desc{color:var(--c60)}
+    .card--hl.card--hl-light .card--hl__spec{background:var(--c05);color:var(--c60);border-color:var(--c10)}
+    .card--hl.card--hl-light .card--hl__cta{color:var(--gold);border-top-color:var(--c10)}
+
+    /* CATEGORY DIVIDER */
+    .cat-divider{grid-column:1/-1;background:var(--cream);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem}
+    .cat-divider[data-hidden]{display:none}
+    .cat-divider__num{font-family:var(--font-d);font-size:1.8rem;color:var(--c10);font-weight:300;line-height:1}
+    .cat-divider__title{font-family:var(--font-d);font-size:1.15rem;font-weight:400}
+    .cat-divider__count{font-size:.58rem;color:var(--c30);letter-spacing:.06em;margin-left:auto}
+
+    /* MINI CTA */
+    .mini-cta{padding:3.5rem 0;background:var(--cream);background-image:url('assets/images/lifestyle/lifestyle-wellness.avif');background-size:cover;background-position:center;text-align:center;position:relative}
+    .mini-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(245,240,232,0.88) 0%,rgba(245,240,232,0.94) 100%);pointer-events:none}
+    .mini-cta>*{position:relative;z-index:1}
+    .mini-cta__title{font-family:var(--font-d);font-size:clamp(1.6rem,3vw,2.5rem);font-weight:300;line-height:1.15;margin-bottom:.5rem}
+    .mini-cta__sub{font-size:.8rem;color:var(--c60);max-width:38ch;margin:0 auto 1.5rem;line-height:1.7}
+    .btn-dark{display:inline-flex;align-items:center;gap:.7rem;padding:.9rem 2rem;background:var(--charcoal);color:var(--ivory);font-size:.64rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;transition:background .3s}
+    .btn-dark:hover{background:#2b2723}
+    .btn-ghost{display:inline-flex;align-items:center;gap:.5rem;font-size:.64rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--c60);margin-left:1.5rem;transition:color .2s}
+    .btn-ghost:hover{color:var(--charcoal)}
+
+    /* FOOTER */
+    .footer{background:var(--charcoal);border-top:1px solid rgba(255,255,255,.05);padding:3.5rem 0 2rem;color:rgba(255,255,255,.4)}
+    .footer__grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.05)}
+    .footer__logo{font-family:var(--font-d);font-size:1.2rem;color:#fff;margin-bottom:.6rem}
+    .footer__tag{font-size:.78rem;max-width:26ch;line-height:1.7}
+    .footer__col-title{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l);margin-bottom:1.1rem}
+    .footer__link{display:block;font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:.55rem;transition:color .2s}
+    .footer__link:hover{color:rgba(255,255,255,.8)}
+    .footer__bottom{padding-top:2rem;display:flex;justify-content:space-between;font-size:.66rem}
+    .footer__legal{display:flex;gap:1.5rem}
+
+    @media(max-width:1024px){
+      .hero__inner{flex-direction:column;align-items:flex-start}
+      .card-grid{grid-template-columns:repeat(2,1fr)}
+      .footer__grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:680px){
+      .nav__links{display:none}
+      .card-grid{grid-template-columns:1fr}
+      .filter-bar__input{width:120px}
+      .filter-bar__input:focus{width:160px}
+      .mini-cta .btn-ghost{display:block;margin:1rem auto 0}
+      .footer__grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="the-ultimate-beauty-homepage.html" class="nav__logo">Aesthetic <span>Clinic</span></a>
+    <ul class="nav__links">
+      <li><a href="the-ultimate-beauty-homepage.html" class="nav__link">Clinic</a></li>
+      <li><a href="protocol.html" class="nav__link">Protocol</a></li>
+      <li><a href="kezelesek.html" class="nav__link active">Treatments</a></li>
+      <li><a href="technologia.html" class="nav__link">Technology</a></li>
+      <li><a href="akademia.html" class="nav__link">Academy</a></li>
+      <li><a href="konzultacio.html" class="nav__link">Consultation</a></li>
+    </ul>
+    <a href="konzultacio.html" class="nav__cta">Consultation →</a>
+  </nav>
+
+  <!-- COMPACT HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero__inner">
+        <div>
+          <span class="label" style="color:var(--gold-l)">Treatments</span>
+          <h1 class="hero__title">Treatment Catalogue</h1>
+          <p class="hero__sub">Every treatment fits within the Prepare → Treat → Recover system. Filter by category, or search by name.</p>
+        </div>
+        <div style="display:flex;gap:2.5rem">
+          <div class="hero__count"><strong>15+</strong>Treatments</div>
+          <div class="hero__count"><strong>6</strong>Categories</div>
+          <div class="hero__count"><strong>3</strong>Pillars</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY FILTER BAR -->
+  <div class="filter-bar" id="filterBar">
+    <div class="wrap">
+      <div class="filter-bar__inner">
+        <div class="filter-bar__row">
+          <button class="fbtn active" data-filter="all">All</button>
+          <button class="fbtn" data-filter="orvosesztetika">Medical Aesthetics</button>
+          <button class="fbtn" data-filter="ultima">NOVA</button>
+          <button class="fbtn" data-filter="biostimulator">Biostimulators</button>
+          <button class="fbtn" data-filter="test">Body & Rehab</button>
+          <button class="fbtn" data-filter="sebeszet">Surgical</button>
+          <button class="fbtn" data-filter="regeneracio">Regeneration</button>
+        </div>
+        <div class="filter-bar__search">
+          <span class="filter-bar__icon">⌕</span>
+          <input type="text" class="filter-bar__input" id="searchInput" placeholder="Search...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS COUNT -->
+  <div class="results-bar">
+    <div class="wrap">
+      <div class="results-bar__inner">
+        <span class="results-count" id="resultsCount"><strong>15</strong> treatments</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATALOG -->
+  <section class="catalog">
+    <div class="wrap">
+      <div class="card-grid" id="cardGrid">
+
+        <!-- ══ MEDICAL AESTHETICS ══ -->
+        <div class="cat-divider" data-cat="orvosesztetika">
+          <span class="cat-divider__num">01</span>
+          <span class="cat-divider__title">Medical Aesthetic Treatments</span>
+          <span class="cat-divider__count">3 treatments</span>
+        </div>
+
+        <div class="card" data-cat="orvosesztetika" data-search="neuromodulator botulinum toxin dynamic wrinkles forehead glabella eyes">
+          <div class="card__top">
+            <span class="card__cat">Medical Aesthetics</span>
+            <span class="card__pillar">II. Treat</span>
+          </div>
+          <h3 class="card__title">Neuromodulator Treatment</h3>
+          <div class="card__sub">Botulinum Toxin · Dynamic Wrinkles</div>
+          <p class="card__desc">Targeted reduction of dynamic wrinkles. 10–15 minutes, zero downtime, 4–6 months duration.</p>
+          <div class="card__tags">
+            <span class="card__tag">Forehead</span>
+            <span class="card__tag">Glabella</span>
+            <span class="card__tag">Periorbital</span>
+            <span class="card__tag">10–15 min</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step active">Treat</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="orvosesztetika" data-search="dermal filler hyaluronic acid volume restoration lips cheek jawline contour">
+          <div class="card__top">
+            <span class="card__cat">Medical Aesthetics</span>
+            <span class="card__pillar">II. Treat</span>
+          </div>
+          <h3 class="card__title">Dermal Filler</h3>
+          <div class="card__sub">Hyaluronic Acid · Volume Restoration</div>
+          <p class="card__desc">Targeted volume restoration, contour refinement and facial harmonisation. Lips, cheeks, chin, jawline.</p>
+          <div class="card__tags">
+            <span class="card__tag">Lips</span>
+            <span class="card__tag">Cheeks</span>
+            <span class="card__tag">Jawline</span>
+          </div>
+          <div class="card__footer">
+            <a href="protocol-hialuronsav-szinergia.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step active">Treat</span>
+              <span class="card__step">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="orvosesztetika" data-search="polynucleotide periorbital pdrn dark circles wrinkles eyes regeneration">
+          <div class="card__top">
+            <span class="card__cat">Medical Aesthetics</span>
+            <span class="card__pillar">II. Treat</span>
+          </div>
+          <h3 class="card__title">Periorbital Polynucleotide Therapy</h3>
+          <div class="card__sub">PDRN · Periorbital Regeneration</div>
+          <p class="card__desc">Polynucleotide-based collagen stimulation targeting the delicate periorbital tissues.</p>
+          <div class="card__tags">
+            <span class="card__tag">Dark Circles</span>
+            <span class="card__tag">Fine Lines</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step active">Treat</span>
+              <span class="card__step">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ NOVA TECHNOLOGY ══ -->
+        <div class="cat-divider" data-cat="ultima">
+          <span class="cat-divider__num">02</span>
+          <span class="cat-divider__title">NOVA Technology</span>
+          <span class="cat-divider__count">3 treatments</span>
+        </div>
+
+        <div class="card" data-cat="ultima" data-search="nova face facial nova pro neuromuscular stimulation photobiomodulation muscle tone">
+          <div class="card__top">
+            <span class="card__cat">NOVA</span>
+            <span class="card__pillar">I. Prepare</span>
+          </div>
+          <h3 class="card__title">NOVA Face</h3>
+          <div class="card__sub">NOVA Pro · Facial Treatment</div>
+          <p class="card__desc">6-channel neuromuscular stimulation and 730/940 nm photobiomodulation. The system's primary facial treatment.</p>
+          <div class="card__tags">
+            <span class="card__tag">45–60 min</span>
+            <span class="card__tag">4–6 sessions</span>
+            <span class="card__tag">0 days downtime</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step">Treat</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="ultima" data-search="nova shape body abdomen thigh upper arm body treatment">
+          <div class="card__top">
+            <span class="card__cat">NOVA</span>
+            <span class="card__pillar">I. Prepare</span>
+          </div>
+          <h3 class="card__title">NOVA Shape</h3>
+          <div class="card__sub">NOVA Pro · Body Treatment</div>
+          <p class="card__desc">Neuromuscular reactivation and tissue preparation for body indications — abdomen, thighs, upper arms.</p>
+          <div class="card__tags">
+            <span class="card__tag">Abdomen</span>
+            <span class="card__tag">Thighs</span>
+            <span class="card__tag">Upper Arms</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step">Treat</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="ultima" data-search="nova pro surgical complement prehabilitation facelift">
+          <div class="card__top">
+            <span class="card__cat">NOVA</span>
+            <span class="card__pillar">I. + III.</span>
+          </div>
+          <h3 class="card__title">NOVA Pro</h3>
+          <div class="card__sub">Surgical Complement Protocol</div>
+          <p class="card__desc">Pre-surgical prehabilitation and post-operative regeneration for mini facelift. Surgery and technology, integrated.</p>
+          <div class="card__tags">
+            <span class="card__tag">Mini Facelift</span>
+            <span class="card__tag">Pre & Post-op</span>
+          </div>
+          <div class="card__footer">
+            <a href="protocol-treatments.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step">Treat</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ BIOSTIMULATORS ══ -->
+        <div class="cat-divider" data-cat="biostimulator">
+          <span class="cat-divider__num">03</span>
+          <span class="cat-divider__title">Biostimulators & Skin Quality</span>
+          <span class="cat-divider__count">3 treatments</span>
+        </div>
+
+        <div class="card" data-cat="biostimulator" data-search="collagen stimulator plla collagen stimulation volume loss collagen rebuild">
+          <div class="card__top">
+            <span class="card__cat">Biostimulator</span>
+            <span class="card__pillar">II. Treat</span>
+          </div>
+          <h3 class="card__title">Collagen Stimulator</h3>
+          <div class="card__sub">PLLA · Collagen Stimulation</div>
+          <p class="card__desc">Gradual, natural collagen rebuilding. Ideal for patients 40+ experiencing volume loss.</p>
+          <div class="card__tags">
+            <span class="card__tag">Collagen</span>
+            <span class="card__tag">Volume Loss</span>
+            <span class="card__tag">40+</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step active">Treat</span>
+              <span class="card__step">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="biostimulator" data-search="caha biostimulator calcium hydroxylapatite skin tightening lifting structural">
+          <div class="card__top">
+            <span class="card__cat">Biostimulator</span>
+            <span class="card__pillar">II. Treat</span>
+          </div>
+          <h3 class="card__title">CaHA Biostimulator</h3>
+          <div class="card__sub">CaHA · Collagen Stimulation</div>
+          <p class="card__desc">Calcium hydroxylapatite-based biostimulator — skin tightening and collagen production with structural effect.</p>
+          <div class="card__tags">
+            <span class="card__tag">Skin Tightening</span>
+            <span class="card__tag">Structural</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step active">Treat</span>
+              <span class="card__step">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="biostimulator" data-search="bioremodeling bap hyaluronic acid hydration glow texture skin quality">
+          <div class="card__top">
+            <span class="card__cat">Biostimulator</span>
+            <span class="card__pillar">II. Treat</span>
+          </div>
+          <h3 class="card__title">Bioremodeling Treatment</h3>
+          <div class="card__sub">BAP Technique · Bioremodeling</div>
+          <p class="card__desc">High-concentration hyaluronic acid bioremodeling — enhanced hydration, firmer texture, visible glow.</p>
+          <div class="card__tags">
+            <span class="card__tag">Glow</span>
+            <span class="card__tag">Hydration</span>
+            <span class="card__tag">Texture</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step active">Treat</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ BODY & REHAB ══ -->
+        <div class="cat-divider" data-cat="test">
+          <span class="cat-divider__num">04</span>
+          <span class="cat-divider__title">Body & Functional Rehabilitation</span>
+          <span class="cat-divider__count">2 treatments</span>
+        </div>
+
+        <div class="card" data-cat="test" data-search="postpartum abdominal regeneration core rehab neuromuscular recovery">
+          <div class="card__top">
+            <span class="card__cat">Body & Rehab</span>
+            <span class="card__pillar">I. + III.</span>
+          </div>
+          <h3 class="card__title">Postpartum Abdominal Regeneration</h3>
+          <div class="card__sub">NOVA Shape · Functional Rehab</div>
+          <p class="card__desc">Functional neuromuscular support — rebuilding core control and dynamic stability, 3–6 months postpartum.</p>
+          <div class="card__tags">
+            <span class="card__tag">Neuromuscular</span>
+            <span class="card__tag">Core Rehab</span>
+            <span class="card__tag">Postpartum</span>
+          </div>
+          <div class="card__footer">
+            <a href="protocol-treatments.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step active">Treat</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="test" data-search="body tightening tone loss contour skin quality skinbooster body">
+          <div class="card__top">
+            <span class="card__cat">Body & Rehab</span>
+            <span class="card__pillar">I. Prepare</span>
+          </div>
+          <h3 class="card__title">Body Tightening Protocol</h3>
+          <div class="card__sub">NOVA Shape + Skinbooster</div>
+          <p class="card__desc">Addressing tone loss, skin quality improvement and contour refinement through NOVA Shape and skinbooster synergy.</p>
+          <div class="card__tags">
+            <span class="card__tag">Tone Loss</span>
+            <span class="card__tag">Contour</span>
+            <span class="card__tag">Skin Quality</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step active">Treat</span>
+              <span class="card__step">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="technologia-observ.html" class="card card--hl" data-cat="test" style="background-image:linear-gradient(180deg,rgba(26,24,22,0.75) 0%,rgba(26,24,22,0.92) 60%),url('assets/images/technology/technology-device.avif');background-size:cover;background-position:center;">
+          <span class="card--hl__label">Diagnostics</span>
+          <div class="card--hl__icon">◉</div>
+          <h3 class="card--hl__title">Skin Diagnostic System</h3>
+          <div class="card--hl__sub">Every treatment begins here</div>
+          <p class="card--hl__desc">8-mode skin diagnostics — we never treat blind. The diagnostic analysis establishes your personalised Protocol pathway.</p>
+          <div class="card--hl__specs">
+            <span class="card--hl__spec">8 Analysis Modes</span>
+            <span class="card--hl__spec">UV → Pigment</span>
+            <span class="card--hl__spec">Polarised</span>
+          </div>
+          <span class="card--hl__cta">Diagnostics details →</span>
+        </a>
+
+        <!-- ══ SURGICAL PROTOCOL ══ -->
+        <div class="cat-divider" data-cat="sebeszet">
+          <span class="cat-divider__num">05</span>
+          <span class="cat-divider__title">Surgical Protocol</span>
+          <span class="cat-divider__count">2 treatments</span>
+        </div>
+
+        <div class="card" data-cat="sebeszet" data-search="mini facelift surgical prehabilitation postoperative dermal local anaesthesia">
+          <div class="card__top">
+            <span class="card__cat">Surgical</span>
+            <span class="card__pillar">I. + III.</span>
+          </div>
+          <h3 class="card__title">Mini Facelift Protocol</h3>
+          <div class="card__sub">NOVA Pro · Surgical Support</div>
+          <p class="card__desc">Pre-surgical prehabilitation (3–4 weeks) and post-operative dermal regeneration. Tissue quality and stability support.</p>
+          <div class="card__tags">
+            <span class="card__tag">Prehabilitation</span>
+            <span class="card__tag">Post-operative</span>
+            <span class="card__tag">Dermal</span>
+          </div>
+          <div class="card__footer">
+            <a href="protocol-treatments.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step" style="border-color:#8B4049;color:#8B4049">Surgery</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="sebeszet" data-search="plastic surgery regeneration facelift blepharoplasty eyelid downtime">
+          <div class="card__top">
+            <span class="card__cat">Surgical</span>
+            <span class="card__pillar">I. + III.</span>
+          </div>
+          <h3 class="card__title">Plastic Surgery Recovery Protocol</h3>
+          <div class="card__sub">NOVA · General Surgical Support</div>
+          <p class="card__desc">Pre-surgical tissue preparation and post-operative regeneration for plastic procedures. Facelift, blepharoplasty, and more.</p>
+          <div class="card__tags">
+            <span class="card__tag">Facelift</span>
+            <span class="card__tag">Blepharoplasty</span>
+            <span class="card__tag">Downtime ↓</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step" style="border-color:#8B4049;color:#8B4049">Surgery</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="clinical-program.html" class="card card--hl card--hl-light" data-cat="sebeszet" style="background-image:linear-gradient(180deg,rgba(248,244,238,0.8) 0%,rgba(245,240,232,0.92) 60%),url('assets/images/clinic/clinic-consultation-room.avif');background-size:cover;background-position:center;">
+          <span class="card--hl__label">Exclusive</span>
+          <div class="card--hl__icon">⬡</div>
+          <h3 class="card--hl__title">Clinical Programme</h3>
+          <div class="card--hl__sub">Join the system</div>
+          <p class="card--hl__desc">You don't receive a treatment — you receive a plan. A limited-capacity, personalised Protocol pathway with continuous physician oversight.</p>
+          <div class="card--hl__specs">
+            <span class="card--hl__spec">Boutique Model</span>
+            <span class="card--hl__spec">Limited Capacity</span>
+            <span class="card--hl__spec">Physician Oversight</span>
+          </div>
+          <span class="card--hl__cta">Programme details →</span>
+        </a>
+
+        <!-- ══ REGENERATION ══ -->
+        <div class="cat-divider" data-cat="regeneracio">
+          <span class="cat-divider__num">06</span>
+          <span class="cat-divider__title">Regeneration & LED Mask</span>
+          <span class="cat-divider__count">2 treatments</span>
+        </div>
+
+        <div class="card" data-cat="regeneracio" data-search="led mask photobiomodulation home ritual collagen regeneration recover">
+          <div class="card__top">
+            <span class="card__cat">Regeneration</span>
+            <span class="card__pillar">III. Recover</span>
+          </div>
+          <h3 class="card__title">NOVA LED Mask</h3>
+          <div class="card__sub">Photobiomodulation · At-Home Ritual</div>
+          <p class="card__desc">The closing element of the Protocol — at-home photobiomodulation for regeneration and clinical result maintenance.</p>
+          <div class="card__tags">
+            <span class="card__tag">630 + 830 nm</span>
+            <span class="card__tag">10–20 min daily</span>
+            <span class="card__tag">At-Home</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step">Prepare</span>
+              <span class="card__step">Treat</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="regeneracio" data-search="preventive anti-aging course prevention 30 40 skin quality skinbooster young">
+          <div class="card__top">
+            <span class="card__cat">Regeneration</span>
+            <span class="card__pillar">I. + III.</span>
+          </div>
+          <h3 class="card__title">Preventive Anti-Aging Programme</h3>
+          <div class="card__sub">NOVA + Skinbooster + LED Mask</div>
+          <p class="card__desc">For patients aged 30–40 — preventing signs of ageing and maintaining skin quality in a structured programme.</p>
+          <div class="card__tags">
+            <span class="card__tag">Prevention</span>
+            <span class="card__tag">Skin Quality</span>
+            <span class="card__tag">30–40 yrs</span>
+          </div>
+          <div class="card__footer">
+            <a href="konzultacio.html" class="card__link">Details →</a>
+            <div class="card__protocol">
+              <span class="card__step active">Prepare</span>
+              <span class="card__step active">Treat</span>
+              <span class="card__step active">Recover</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="technologia-led-mask.html" class="card card--hl" data-cat="regeneracio" style="background-image:linear-gradient(180deg,rgba(26,24,22,0.75) 0%,rgba(26,24,22,0.92) 60%),url('assets/images/technology/technology-led.avif');background-size:cover;background-position:center;">
+          <span class="card--hl__label">Recover · At-Home</span>
+          <div class="card--hl__icon">◐</div>
+          <h3 class="card--hl__title">NOVA LED Mask</h3>
+          <div class="card--hl__sub">Take the Protocol home</div>
+          <p class="card--hl__desc">Clinical treatment doesn't end at the clinic. 4-wavelength photobiomodulation, 93 grams, clinical efficacy — at home.</p>
+          <div class="card--hl__specs">
+            <span class="card--hl__spec">415–850 nm</span>
+            <span class="card--hl__spec">93 grams</span>
+            <span class="card--hl__spec">IP67</span>
+            <span class="card--hl__spec">10–20 min/day</span>
+          </div>
+          <span class="card--hl__cta">LED Mask details →</span>
+        </a>
+
+      </div>
+
+      <!-- EMPTY STATE -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-state__icon">⌕</div>
+        <div class="empty-state__text">No results found</div>
+        <div class="empty-state__hint">Try a different search term or select another category</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MINI CTA -->
+  <section class="mini-cta">
+    <div class="wrap">
+      <h2 class="mini-cta__title">Personalised<br><em>consultation</em></h2>
+      <p class="mini-cta__sub">Your Protocol pathway is unique. During a consultation, we personally assess your goals and design your treatment plan.</p>
+      <a href="konzultacio.html" class="btn-dark">Book Now →</a>
+      <a href="protocol.html" class="btn-ghost">The Protocol →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo">Aesthetic Clinic.</div>
+          <p class="footer__tag">Boutique aesthetic clinic in the City. Personalised medical aesthetics and NOVA technology.</p>
+        </div>
+        <div>
+          <div class="footer__col-title">Protocol</div>
+          <a href="protocol.html" class="footer__link">Protocol Hub</a>
+          <a href="protocol-treatments.html" class="footer__link">Protocol Treatments</a>
+          <a href="clinical-program.html" class="footer__link">Clinical Programs</a>
+          <a href="#" class="footer__link">Research</a>
+          <a href="technologia.html" class="footer__link">Technology</a>
+        </div>
+        <div>
+          <div class="footer__col-title">Treatments</div>
+          <a href="kezelesek.html" class="footer__link">All Treatments</a>
+          <a href="protocol-hialuronsav-szinergia.html" class="footer__link">Dermal Filler Synergy</a>
+          <a href="protocol-treatments.html" class="footer__link">Mini Facelift Protocol</a>
+          <a href="protocol-treatments.html" class="footer__link">Postpartum Recovery</a>
+        </div>
+        <div>
+          <div class="footer__col-title">Clinic</div>
+          <a href="the-ultimate-beauty-homepage.html" class="footer__link">Home</a>
+          <a href="konzultacio.html" class="footer__link">Consultation</a>
+          <a href="akademia.html" class="footer__link">Academy</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Aesthetic Clinic. All rights reserved. · City</span>
+        <div class="footer__legal">
+          <a href="#privacy" class="footer__link" style="margin:0">Privacy Policy</a>
+          <a href="#terms" class="footer__link" style="margin:0">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('on', scrollY > 60));
+
+    // Filter logic
+    const grid = document.getElementById('cardGrid');
+    const cards = grid.querySelectorAll('.card:not(.card--cta)');
+    const ctaCards = grid.querySelectorAll('.card--hl');
+    const dividers = grid.querySelectorAll('.cat-divider');
+    const filterBtns = document.querySelectorAll('.fbtn');
+    const searchInput = document.getElementById('searchInput');
+    const resultsCount = document.getElementById('resultsCount');
+    const emptyState = document.getElementById('emptyState');
+    let currentFilter = 'all';
+
+    function applyFilters() {
+      const q = searchInput.value.toLowerCase().trim();
+      let visible = 0;
+      const catCounts = {};
+
+      cards.forEach(card => {
+        const cat = card.dataset.cat;
+        const searchText = (card.dataset.search + ' ' + card.textContent).toLowerCase();
+        const catMatch = currentFilter === 'all' || cat === currentFilter;
+        const searchMatch = !q || searchText.includes(q);
+        const show = catMatch && searchMatch;
+
+        if (show) {
+          card.removeAttribute('data-hidden');
+          visible++;
+          catCounts[cat] = (catCounts[cat] || 0) + 1;
+        } else {
+          card.setAttribute('data-hidden', '');
+        }
+      });
+
+      // Show/hide category dividers
+      dividers.forEach(div => {
+        const cat = div.dataset.cat;
+        const catMatch = currentFilter === 'all' || cat === currentFilter;
+        const hasCards = catCounts[cat] > 0;
+        if (catMatch && hasCards) {
+          div.removeAttribute('data-hidden');
+        } else {
+          div.setAttribute('data-hidden', '');
+        }
+      });
+
+      // Show/hide CTA cards (follow their category)
+      ctaCards.forEach(cta => {
+        const cat = cta.dataset.cat;
+        const catMatch = currentFilter === 'all' || cat === currentFilter;
+        const hasCards = catCounts[cat] > 0;
+        if (catMatch && hasCards && !q) {
+          cta.removeAttribute('data-hidden');
+        } else {
+          cta.setAttribute('data-hidden', '');
+        }
+      });
+
+      // Results count
+      resultsCount.innerHTML = `<strong>${visible}</strong> treatments` + (q ? ` for "${q}"` : '');
+
+      // Empty state
+      emptyState.classList.toggle('show', visible === 0);
+    }
+
+    // Category filter buttons
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    // Search
+    searchInput.addEventListener('input', applyFilters);
+
+    // Initial state
+    applyFilters();
+  </script>
+</body>
+</html>
